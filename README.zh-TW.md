@@ -121,7 +121,7 @@ python ai_form.py
 如有任何問題或建議：
 - 🐛 [開啟 Issue](../../issues)
 - 🔀 [提交 Pull Request](../../pulls)
-- 📧 寄信至 [your-email@example.com]
+- 📧 寄信至 [sun055676@gmail.com]
 
 ## 🙏 致謝
 
@@ -132,5 +132,5 @@ python ai_form.py
 ---
 
 <div align="center">
-Made with ❤️ by Your Name
+Made with ❤️ by Sun
 </div>
