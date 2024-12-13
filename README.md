@@ -121,7 +121,7 @@ This tool is for educational and research purposes only. Users should assume all
 For any questions or suggestions:
 - 🐛 [Open Issue](../../issues)
 - 🔀 [Submit Pull Request](../../pulls)
-- 📧 Email to [your-email@example.com]
+- 📧 Email to [sun055676@gmail.com]
 
 ## 🙏 Acknowledgements
 
