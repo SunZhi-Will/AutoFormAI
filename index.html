@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="appTitle">AutoFormAI - 自動表單填寫工具</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8612427649292710"
+        crossorigin="anonymous"></script>
+    <style>
+        /* 全局變量 */
+        :root {
+            --black: #000000;
+            --dark-gray: #222222;
+            --medium-gray: #555555;
+            --light-gray: #DDDDDD;
+            --off-white: #F8F8F8;
+            --white: #FFFFFF;
+            --border-color: #E0E0E0;
+            --shadow-subtle: 0 2px 10px rgba(0, 0, 0, 0.04);
+            --shadow-medium: 0 5px 15px rgba(0, 0, 0, 0.07);
+            --transition-standard: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 基本元素 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--white);
+            color: var(--dark-gray);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: opacity 0.3s ease;
+        }
+
+        /* 語言切換過渡動畫 */
+        body.language-transition {
+            opacity: 0.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* 排版 */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--black);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5em;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--medium-gray);
+        }
+
+        a {
+            color: var(--black);
+            text-decoration: none;
+            transition: var(--transition-standard);
+        }
+
+        /* 標頭區域 */
+        header {
+            padding: 1.5rem 0;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 0;
+            margin-right: 1rem;
+        }
+
+        header p {
+            font-size: 1rem;
+            color: var(--medium-gray);
+            margin-bottom: 0;
+        }
+
+        header nav a {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+            background-color: transparent;
+            color: var(--black);
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: var(--transition-standard);
+        }
+
+        header nav a:hover {
+            background-color: var(--black);
+            color: var(--white);
+            border-color: var(--black);
+            transform: translateY(-2px);
+        }
+
+        header nav a i {
+            margin-right: 0.5rem;
+        }
+
+        /* 語言切換按鈕 */
+        .lang-toggle {
+            margin-left: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            /* 固定寬度，更精簡 */
+            height: 36px;
+            /* 固定高度，成為圓形按鈕 */
+            padding: 0;
+            /* 移除內邊距 */
+            font-weight: 500;
+            background-color: var(--off-white);
+            color: var(--black);
+            border: 1px solid var(--light-gray);
+            border-radius: 50%;
+            /* 圓形按鈕 */
+            font-size: 0.8rem;
+            transition: var(--transition-standard);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .lang-toggle::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--black);
+            z-index: -1;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.3s ease;
+        }
+
+        .lang-toggle:hover {
+            color: var(--white);
+            border-color: var(--black);
+            transform: translateY(-2px);
+        }
+
+        .lang-toggle:hover::before {
+            transform: scale(1);
+        }
+
+        .lang-toggle i {
+            display: none;
+            /* 隱藏圖標，只顯示文字 */
+        }
+
+        /* 主要內容 */
+        main {
+            padding: 0;
+            margin-bottom: 3rem;
+        }
+
+        /* 表單容器 */
+        .form-container {
+            background-color: var(--white);
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: var(--transition-standard);
+        }
+
+        .form-container:hover {
+            box-shadow: var(--shadow-subtle);
+        }
+
+        /* 表單樣式 */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .label-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            color: var(--black);
+        }
+
+        .external-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+            transition: var(--transition-standard);
+            border-bottom: none;
+        }
+
+        .external-link:hover {
+            color: var(--black);
+            transform: translateY(-1px);
+        }
+
+        .external-link i {
+            margin-right: 0.3rem;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: var(--dark-gray);
+            background-color: var(--white);
+            transition: var(--transition-standard);
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--black);
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="password"] {
+            letter-spacing: 0.1em;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .info-text {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--medium-gray);
+            margin-top: 0.5rem;
+        }
+
+        button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 2rem;
+            background-color: var(--black);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition-standard);
+        }
+
+        button:hover {
+            background-color: var(--dark-gray);
+            transform: translateY(-2px);
+        }
+
+        button:disabled {
+            background-color: var(--light-gray);
+            color: var(--medium-gray);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* 結果容器 */
+        .form-data-container,
+        .result-container {
+            background-color: var(--off-white);
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        pre {
+            background-color: var(--white);
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--light-gray);
+            font-family: 'SF Mono', Consolas, Monaco, monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            overflow-x: auto;
+            max-height: 400px;
+            white-space: pre-wrap;
+        }
+
+        .result p {
+            margin-bottom: 1rem;
+        }
+
+        .result a {
+            display: inline-block;
+            padding: 0.5rem 0;
+            margin-bottom: 1rem;
+            color: var(--black);
+            border-bottom: 1px solid var(--medium-gray);
+            word-break: break-all;
+        }
+
+        .result a:hover {
+            border-color: var(--black);
+        }
+
+        #copyLinkBtn {
+            background-color: var(--off-white);
+            color: var(--black);
+            border: 1px solid var(--light-gray);
+        }
+
+        #copyLinkBtn:hover {
+            background-color: var(--black);
+            color: var(--white);
+            border-color: var(--black);
+        }
+
+        /* 載入動畫 */
+        .loading {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--black);
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* 廣告容器 */
+        .ad-container {
+            width: 100%;
+            overflow: hidden;
+            margin: 0.5rem 0;
+            text-align: center;
+            clear: both;
+        }
+
+        .ad-container-header {
+            margin: 0.5rem 0;
+            max-height: 90px;
+        }
+
+        .ad-container-sidebar {
+            padding: 0.25rem;
+            border-radius: 4px;
+            background-color: var(--off-white);
+            border: 1px solid var(--light-gray);
+            margin-bottom: 0.5rem;
+            max-height: 250px;
+        }
+
+        .ad-container-content {
+            padding: 0.25rem;
+            border-radius: 4px;
+            background-color: var(--off-white);
+            border: 1px solid var(--light-gray);
+            margin: 0.5rem 0;
+            max-height: 120px;
+        }
+
+        .ad-container-footer {
+            padding: 0.25rem;
+            border-radius: 4px;
+            background-color: var(--off-white);
+            border: 1px solid var(--light-gray);
+            margin: 0.5rem 0 1rem 0;
+            max-height: 90px;
+        }
+
+        /* 頁腳 */
+        footer {
+            padding: 1.5rem 0;
+            text-align: center;
+            border-top: 1px solid var(--light-gray);
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+
+            .form-container,
+            .form-data-container,
+            .result-container {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-bottom: 1rem;
+            }
+
+            header .logo-container {
+                margin-bottom: 0.5rem;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            header p {
+                font-size: 0.9rem;
+            }
+
+            .form-container,
+            .form-data-container,
+            .result-container {
+                padding: 1.25rem;
+                border-radius: 6px;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <h1>AutoFormAI</h1>
+                <p data-i18n="appTagline">AI 驅動的表單自動填寫工具</p>
+            </div>
+            <nav>
+                <a href="help.html"><i class="fas fa-question-circle"></i> <span data-i18n="helpLink">使用說明</span></a>
+                <a href="#" id="langToggle" class="lang-toggle" title="Switch language">EN</a>
+            </nav>
+        </header>
+
+        <!-- 頂部廣告 - 小型橫幅 -->
+        <div class="ad-container ad-container-header">
+            <ins class="adsbygoogle" style="display:inline-block; width:728px; height:90px"
+                data-ad-client="ca-pub-8612427649292710" data-ad-slot="6258491357"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <main>
+            <div class="form-container">
+                <h2 data-i18n="setupFormInfo">設定表單資訊</h2>
+                <form id="autoFormSettings">
+                    <div class="form-group">
+                        <div class="label-container">
+                            <label for="apiKey" data-i18n="apiKeyLabel">Gemini API 金鑰</label>
+                            <a href="https://makersuite.google.com/app/apikey" target="_blank" class="external-link"
+                                title="前往 Google AI Studio 獲取 API 金鑰">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span data-i18n="getApiKey">Google AI Studio</span>
+                            </a>
+                        </div>
+                        <input type="password" id="apiKey" name="apiKey" required data-i18n-attr="placeholder"
+                            data-i18n="apiKeyPlaceholder" placeholder="在此輸入您的 API 金鑰">
+                        <small class="info-text" data-i18n="apiKeyInfo">您的 API 金鑰僅在本地使用，不會被傳送至伺服器</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="formUrl" data-i18n="formUrlLabel">Google Form URL</label>
+                        <input type="url" id="formUrl" name="formUrl" required data-i18n-attr="placeholder"
+                            data-i18n="formUrlPlaceholder" placeholder="貼上 Google Form URL 即可自動檢測表單結構" value="">
+                        <small class="info-text" data-i18n="formUrlInfo">必須先檢測表單結構成功後才能生成填寫連結</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userInput" data-i18n="userInputLabel">提供的資訊</label>
+                        <textarea id="userInput" name="userInput" rows="8" data-i18n-attr="placeholder"
+                            data-i18n="userInputPlaceholder" placeholder="請輸入您希望AI用來填寫表單的資訊..."></textarea>
+                        <small class="info-text" data-i18n="userInputInfo">輸入您想提供給AI的任何資訊，格式不限。AI會基於這些資訊自動填寫表單。</small>
+                    </div>
+
+                    <button type="submit" id="generateBtn" disabled data-i18n="generateBtn">生成填寫連結</button>
+                </form>
+            </div>
+
+            <!-- 表單區間廣告 - 小型橫幅 -->
+            <div class="ad-container ad-container-content">
+                <ins class="adsbygoogle" style="display:inline-block; width:468px; height:60px"
+                    data-ad-client="ca-pub-8612427649292710" data-ad-slot="3592854324"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+
+            <div class="form-data-container hidden" id="formDataContainer">
+                <h2 data-i18n="formStructureTitle">表單結構</h2>
+                <div class="form-data">
+                    <pre id="formDataDisplay"></pre>
+                </div>
+            </div>
+
+            <div class="result-container hidden" id="resultContainer">
+                <h2 data-i18n="fillLinkTitle">填寫連結</h2>
+                <div class="result">
+                    <p data-i18n="clickToComplete">請點擊下方連結完成表單填寫：</p>
+                    <a href="#" id="formFillLink" target="_blank"></a>
+                    <button id="copyLinkBtn" data-i18n="copyLinkBtn">複製連結</button>
+                </div>
+            </div>
+
+            <div class="loading hidden" id="loadingIndicator">
+                <div class="spinner"></div>
+                <p data-i18n="loading">AI 正在分析表單並生成回答...</p>
+            </div>
+
+            <!-- 結果區間廣告 - 小型橫幅 -->
+            <div class="ad-container ad-container-content">
+                <ins class="adsbygoogle" style="display:inline-block; width:468px; height:60px"
+                    data-ad-client="ca-pub-8612427649292710" data-ad-slot="5218427539"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </main>
+
+        <!-- 底部廣告 - 小型橫幅 -->
+        <div class="ad-container ad-container-footer">
+            <ins class="adsbygoogle" style="display:inline-block; width:728px; height:90px"
+                data-ad-client="ca-pub-8612427649292710" data-ad-slot="7858319421"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <footer>
+            <p data-i18n="footer">AutoFormAI © 2025 | 透過 AI 輕鬆完成表單填寫</p>
+        </footer>
+    </div>
+
+    <script src="static/js/i18n.js"></script>
+    <script src="static/js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="helpTitle">使用說明 - AutoFormAI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8612427649292710"
+        crossorigin="anonymous"></script>
+    <style>
+        /* 全局變量 */
+        :root {
+            --black: #000000;
+            --dark-gray: #222222;
+            --medium-gray: #555555;
+            --light-gray: #DDDDDD;
+            --off-white: #F8F8F8;
+            --white: #FFFFFF;
+            --border-color: #E0E0E0;
+            --shadow-subtle: 0 2px 10px rgba(0, 0, 0, 0.04);
+            --shadow-medium: 0 5px 15px rgba(0, 0, 0, 0.07);
+            --transition-standard: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 基本元素 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--white);
+            color: var(--dark-gray);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: opacity 0.3s ease;
+        }
+
+        /* 語言切換過渡動畫 */
+        body.language-transition {
+            opacity: 0.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* 排版 */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--black);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5em;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--medium-gray);
+        }
+
+        a {
+            color: var(--black);
+            text-decoration: none;
+            border-bottom: 1px solid var(--medium-gray);
+            transition: var(--transition-standard);
+        }
+
+        a:hover {
+            border-color: var(--black);
+        }
+
+        /* 標頭區域 */
+        header {
+            padding: 1.5rem 0;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 0;
+            margin-right: 1rem;
+        }
+
+        header p {
+            font-size: 1rem;
+            color: var(--medium-gray);
+            margin-bottom: 0;
+        }
+
+        header nav a {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+            background-color: var(--black);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: var(--transition-standard);
+        }
+
+        header nav a:hover {
+            background-color: var(--dark-gray);
+            transform: translateY(-2px);
+        }
+
+        header nav a i {
+            margin-right: 0.5rem;
+        }
+
+        /* 語言切換按鈕 */
+        .lang-toggle {
+            margin-left: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            /* 固定寬度，更精簡 */
+            height: 36px;
+            /* 固定高度，成為圓形按鈕 */
+            padding: 0;
+            /* 移除內邊距 */
+            font-weight: 500;
+            background-color: var(--white);
+            color: var(--black);
+            border: 1px solid var(--light-gray);
+            border-radius: 50%;
+            /* 圓形按鈕 */
+            font-size: 0.8rem;
+            transition: var(--transition-standard);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .lang-toggle::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--black);
+            z-index: -1;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.3s ease;
+        }
+
+        .lang-toggle:hover {
+            color: var(--white);
+            border-color: var(--black);
+            transform: translateY(-2px);
+        }
+
+        .lang-toggle:hover::before {
+            transform: scale(1);
+        }
+
+        .lang-toggle i {
+            display: none;
+            /* 隱藏圖標，只顯示文字 */
+        }
+
+        /* 主要內容區 */
+        .help-container {
+            padding: 0;
+            margin-bottom: 4rem;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        /* 目錄 */
+        .table-of-contents {
+            position: sticky;
+            top: 1.5rem;
+            background-color: var(--off-white);
+            padding: 1.25rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+        }
+
+        .table-of-contents h3 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .table-of-contents ul {
+            list-style-type: none;
+        }
+
+        .table-of-contents li {
+            margin-bottom: 0.5rem;
+        }
+
+        .table-of-contents li:last-child {
+            margin-bottom: 0;
+        }
+
+        .table-of-contents a {
+            display: block;
+            padding: 0.4rem 0;
+            color: var(--medium-gray);
+            border: none;
+            transition: var(--transition-standard);
+            font-size: 0.9rem;
+        }
+
+        .table-of-contents a:hover,
+        .table-of-contents a.active {
+            color: var(--black);
+            transform: translateX(4px);
+        }
+
+        .table-of-contents a i {
+            margin-right: 0.5rem;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* 內容區塊 */
+        .content-wrapper {
+            padding-right: 2rem;
+        }
+
+        .help-section {
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+        }
+
+        .help-section:not(:last-child) {
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .help-section h2 {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            font-size: 1.6rem;
+        }
+
+        .help-section h2 i {
+            margin-right: 0.75rem;
+            opacity: 0.8;
+        }
+
+        .help-section h3 {
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .help-section h3 i {
+            margin-right: 0.75rem;
+            opacity: 0.8;
+        }
+
+        /* 步驟卡片 */
+        .step {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: var(--white);
+            border: 1px solid var(--light-gray);
+            border-radius: 6px;
+            position: relative;
+            transition: var(--transition-standard);
+        }
+
+        .step:hover {
+            border-color: var(--medium-gray);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: var(--black);
+            color: var(--white);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 0.75rem;
+            vertical-align: middle;
+        }
+
+        .step p {
+            display: inline;
+            vertical-align: middle;
+            margin-bottom: 0;
+        }
+
+        /* 代碼塊 */
+        .code-block {
+            background-color: var(--off-white);
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--light-gray);
+            font-family: 'SF Mono', Consolas, Monaco, monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            overflow-x: auto;
+            margin: 1rem 0;
+            white-space: pre-wrap;
+        }
+
+        /* 提示框 */
+        .tip-box {
+            background-color: var(--off-white);
+            padding: 1rem;
+            border-radius: 6px;
+            border-left: 3px solid var(--black);
+            margin: 1rem 0;
+        }
+
+        .tip-box p {
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .tip-box i {
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        /* 圖片 */
+        img {
+            max-width: 100%;
+            border-radius: 6px;
+            margin: 1.5rem 0;
+            border: 1px solid var(--light-gray);
+            transition: var(--transition-standard);
+        }
+
+        img:hover {
+            transform: scale(1.01);
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* FAQ 區塊 */
+        .faq-item {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .faq-item:not(:last-child) {
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .faq-question {
+            margin-bottom: 0.5rem;
+            padding: 0.4rem 0;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition-standard);
+        }
+
+        .faq-question:hover {
+            color: var(--black);
+        }
+
+        .faq-question .icon-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .faq-question i:first-child {
+            margin-right: 0.75rem;
+        }
+
+        .faq-question i.toggle {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: var(--transition-standard);
+        }
+
+        .faq-question.active i.toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition-standard);
+            padding-left: 2rem;
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* 廣告容器 */
+        .ad-container {
+            width: 100%;
+            overflow: hidden;
+            margin: 0.5rem 0;
+            text-align: center;
+            clear: both;
+        }
+
+        .ad-container-header {
+            margin: 0.5rem 0;
+            max-height: 90px;
+        }
+
+        .ad-container-sidebar {
+            padding: 0.25rem;
+            border-radius: 4px;
+            background-color: var(--off-white);
+            border: 1px solid var(--light-gray);
+            margin-bottom: 0.5rem;
+            max-height: 200px;
+        }
+
+        .ad-container-section {
+            padding: 0.25rem;
+            border-radius: 4px;
+            background-color: var(--off-white);
+            border: 1px solid var(--light-gray);
+            margin: 0.75rem 0;
+            max-height: 90px;
+        }
+
+        .ad-container-footer {
+            padding: 0.25rem;
+            border-radius: 4px;
+            background-color: var(--off-white);
+            border: 1px solid var(--light-gray);
+            margin: 0.5rem 0 1rem 0;
+            max-height: 90px;
+        }
+
+        /* 頁腳 */
+        footer {
+            padding: 1.5rem 0;
+            text-align: center;
+            border-top: 1px solid var(--light-gray);
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--medium-gray);
+            margin: 0 0.5rem;
+            border-bottom: 1px solid transparent;
+        }
+
+        footer a:hover {
+            color: var(--black);
+            border-color: var(--medium-gray);
+        }
+
+        /* 回到頂部按鈕 */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 36px;
+            height: 36px;
+            background-color: var(--black);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-standard);
+            z-index: 100;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-4px);
+            background-color: var(--dark-gray);
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 960px) {
+            .help-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .table-of-contents {
+                position: relative;
+                top: 0;
+                margin-bottom: 1.5rem;
+            }
+
+            .content-wrapper {
+                padding-right: 0;
+            }
+        }
+
+        @media (max-width: 640px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-bottom: 1rem;
+            }
+
+            header .logo-container {
+                margin-bottom: 0.5rem;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .help-section {
+                margin-bottom: 2rem;
+                padding-bottom: 1rem;
+            }
+
+            .help-section h2 {
+                font-size: 1.4rem;
+            }
+
+            .help-section h3 {
+                font-size: 1.2rem;
+            }
+
+            .step {
+                padding: 1rem;
+            }
+
+            .back-to-top {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 32px;
+                height: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <h1>AutoFormAI</h1>
+                <p data-i18n="helpTagline">使用說明</p>
+            </div>
+            <nav>
+                <a href="index.html"><i class="fas fa-arrow-left"></i> <span data-i18n="returnHome">返回首頁</span></a>
+                <a href="#" id="langToggle" class="lang-toggle" title="Switch language">EN</a>
+            </nav>
+        </header>
+
+        <!-- 頂部廣告 - 小型橫幅 -->
+        <div class="ad-container ad-container-header">
+            <ins class="adsbygoogle" style="display:inline-block; width:728px; height:90px"
+                data-ad-client="ca-pub-8612427649292710" data-ad-slot="6258491357"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <main class="help-container">
+            <div class="table-of-contents" id="toc">
+                <h3 data-i18n="toc">目錄</h3>
+                <ul>
+                    <li><a href="#intro"><i class="fas fa-info-circle"></i> <span data-i18n="introTitle">AutoFormAI
+                                簡介</span></a></li>
+                    <li><a href="#step1"><i class="fas fa-key"></i> <span data-i18n="step1Title">獲取 API 金鑰</span></a>
+                    </li>
+                    <li><a href="#step2"><i class="fas fa-link"></i> <span data-i18n="step2Title">指定 Google
+                                Form</span></a></li>
+                    <li><a href="#step3"><i class="fas fa-user-edit"></i> <span data-i18n="step3Title">提供您的資訊</span></a>
+                    </li>
+                    <li><a href="#step4"><i class="fas fa-magic"></i> <span data-i18n="step4Title">生成填寫連結</span></a>
+                    </li>
+                    <li><a href="#faq"><i class="fas fa-question-circle"></i> <span data-i18n="faqTitle">常見問題</span></a>
+                    </li>
+                </ul>
+
+                <!-- 側邊欄廣告 - 小型矩形 -->
+                <div class="ad-container ad-container-sidebar">
+                    <ins class="adsbygoogle" style="display:inline-block; width:200px; height:200px"
+                        data-ad-client="ca-pub-8612427649292710" data-ad-slot="9782536195"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+
+            <div class="content-wrapper">
+                <div id="intro" class="help-section">
+                    <h2><i class="fas fa-info-circle"></i> <span data-i18n="introTitle">如何使用 AutoFormAI</span></h2>
+                    <p data-i18n="introText">AutoFormAI 是一個使用 Google Gemini AI 模型自動填寫 Google Form 的工具，讓您不再需要手動填寫重複性的表單。
+                    </p>
+                    <div class="tip-box">
+                        <p><i class="fas fa-lightbulb"></i> <strong data-i18n="tipTitle">提示：</strong> <span
+                                data-i18n="introTip">使用前請確保您已經有一個 Google 帳戶，並且有權限創建 API 金鑰。</span>
+                        </p>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="static/images/workflow.png" alt="AutoFormAI 工作流程" style="max-width: 90%;"
+                            onerror="this.style.display='none'">
+                    </div>
+                </div>
+
+                <div id="step1" class="help-section">
+                    <h3><i class="fas fa-key"></i> <span data-i18n="step1Title">獲取 Gemini API 金鑰</span></h3>
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <p data-i18n="step1_1">訪問 <a href="https://makersuite.google.com/app/apikey"
+                                target="_blank">Google AI Studio</a>
+                            並登入您的 Google 帳戶</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <p data-i18n="step1_2">點擊「Create API key」按鈕創建新的 API 金鑰</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <p data-i18n="step1_3">複製生成的 API 金鑰（它看起來像這樣：AIzaSyC_...）</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">4</span>
+                        <p data-i18n="step1_4">在 AutoFormAI 應用中填入您的 API 金鑰</p>
+                    </div>
+                </div>
+
+                <!-- 區塊間廣告 - 小型橫幅 -->
+                <div class="ad-container ad-container-section">
+                    <ins class="adsbygoogle" style="display:inline-block; width:468px; height:60px"
+                        data-ad-client="ca-pub-8612427649292710" data-ad-slot="3592854324"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+
+                <div id="step2" class="help-section">
+                    <h3><i class="fas fa-link"></i> <span data-i18n="step2Title">指定 Google Form</span></h3>
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <p data-i18n="step2_1">直接粘貼 Google Form 的網址到輸入框中</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <p data-i18n="step2_2">系統會自動嘗試檢測表單的結構，並在檢測成功後啟用「生成填寫連結」按鈕</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <p data-i18n="step2_3">如果檢測失敗，請確認您的網址是否正確，或嘗試使用其他瀏覽器</p>
+                    </div>
+                </div>
+
+                <div id="step3" class="help-section">
+                    <h3><i class="fas fa-user-edit"></i> <span data-i18n="step3Title">提供您的資訊</span></h3>
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <p data-i18n="step3_1">在文本框中輸入您希望 AI 用來填寫表單的資訊，格式不限。例如：</p>
+                    </div>
+                    <div class="code-block" data-i18n="sampleData">名字: Sun<br>性別: 男<br>電話: 0912345678
+                        <br>出生:{"year": 1999,"month": 8,"day":19}<br>Email: xxxx@gmail.com<br>地址: 高雄市<br>喜好: 畫畫、遊戲
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <p data-i18n="step3_2">您可以使用自然語言或結構化格式，AI 會盡可能理解您的意圖</p>
+                    </div>
+                    <div class="tip-box">
+                        <p><i class="fas fa-lightbulb"></i> <strong data-i18n="tipTitle">提示：</strong><span
+                                data-i18n="step3_tip">結構化格式（例如 JSON）通常能提高 AI 理解準確性</span></p>
+                    </div>
+                </div>
+
+                <!-- 區塊間廣告 - 小型橫幅 -->
+                <div class="ad-container ad-container-section">
+                    <ins class="adsbygoogle" style="display:inline-block; width:468px; height:60px"
+                        data-ad-client="ca-pub-8612427649292710" data-ad-slot="5218427539"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+
+                <div id="step4" class="help-section">
+                    <h3><i class="fas fa-magic"></i> <span data-i18n="step4Title">生成填寫連結</span></h3>
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <p data-i18n="step4_1">確認所有資訊無誤後，點擊「生成填寫連結」按鈕</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <p data-i18n="step4_2">系統會顯示以下內容：</p>
+                        <ul style="list-style-type: disc; margin-left: 2.5rem; margin-top: 0.5rem;">
+                            <li style="margin-bottom: 0.5rem;"><strong data-i18n="formStructureTitle">表單結構</strong> -
+                                <span data-i18n="step4_2_1">顯示 AI 將要回答的問題</span>
+                            </li>
+                            <li><strong data-i18n="fillLinkTitle">填寫連結</strong> - <span
+                                    data-i18n="step4_2_2">點擊此連結即可打開已預填答案的表單</span></li>
+                        </ul>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <p data-i18n="step4_3">點擊「複製連結」按鈕可以方便地複製填寫連結</p>
+                    </div>
+                </div>
+
+                <div id="faq" class="help-section">
+                    <h3><i class="fas fa-question-circle"></i> <span data-i18n="faqTitle">常見問題</span></h3>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <div class="icon-wrapper">
+                                <i class="fas fa-shield-alt"></i> <span data-i18n="faq1_q">我的 API 金鑰安全嗎？</span>
+                            </div>
+                            <i class="fas fa-chevron-down toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p data-i18n="faq1_a">您的 API 金鑰僅用於從瀏覽器直接向 Google API 發送請求，不會被發送到任何其他服務器或儲存。所有處理都在您的本地瀏覽器中完成。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <div class="icon-wrapper">
+                                <i class="fas fa-exclamation-triangle"></i> <span data-i18n="faq2_q">為什麼表單檢測會失敗？</span>
+                            </div>
+                            <i class="fas fa-chevron-down toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p data-i18n="faq2_a">由於瀏覽器的跨域安全限制，直接從 JavaScript 訪問 Google Form
+                                內容可能會被阻止。系統會嘗試使用多種代理方法，但並非所有表單都能成功檢測。</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <div class="icon-wrapper">
+                                <i class="fas fa-chart-line"></i> <span data-i18n="faq3_q">API 金鑰有使用限制嗎？</span>
+                            </div>
+                            <i class="fas fa-chevron-down toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p data-i18n="faq3_a">是的，Google Gemini API 有使用配額限制。如果您頻繁使用，可能會達到每日限制。請參考 <a
+                                    href="https://ai.google.dev/docs/quotas_limits" target="_blank">Google AI
+                                    文檔</a>瞭解更多。</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <div class="icon-wrapper">
+                                <i class="fas fa-desktop"></i> <span data-i18n="faq4_q">我需要安裝什麼才能使用此工具？</span>
+                            </div>
+                            <i class="fas fa-chevron-down toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p data-i18n="faq4_a">此工具是純前端應用程式，只需要一個現代網頁瀏覽器即可使用。無需安裝 Python 或 Node.js。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 內容底部廣告 - 小型橫幅 -->
+                <div class="ad-container ad-container-section">
+                    <ins class="adsbygoogle" style="display:inline-block; width:468px; height:60px"
+                        data-ad-client="ca-pub-8612427649292710" data-ad-slot="8475261823"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+        </main>
+
+        <!-- 底部廣告 - 小型橫幅 -->
+        <div class="ad-container ad-container-footer">
+            <ins class="adsbygoogle" style="display:inline-block; width:728px; height:90px"
+                data-ad-client="ca-pub-8612427649292710" data-ad-slot="7858319421"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <footer>
+            <p><span data-i18n="copyright">AutoFormAI © 2025</span> | <a href="index.html"><span
+                        data-i18n="returnHome">返回首頁</span></a> | <a href="#" id="report-issue"><span
+                        data-i18n="reportIssue">回報問題</span></a></p>
+        </footer>
+    </div>
+
+    <a href="#" class="back-to-top" title="回到頂部" data-i18n-attr="title" data-i18n="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="static/js/i18n.js"></script>
+    <script>
+        // 平滑滾動效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (this.getAttribute('href') === '#') return;
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 回到頂部按鈕顯示/隱藏
+        window.addEventListener('scroll', function () {
+            const backToTopButton = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        // 回到頂部按鈕功能
+        document.querySelector('.back-to-top').addEventListener('click', function (e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // 回報問題連結
+        document.getElementById('report-issue').addEventListener('click', function (e) {
+            e.preventDefault();
+            alert(window.i18n.getText('issueMsg'));
+        });
+
+        // FAQ 收合效果
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function () {
+                const answer = this.nextElementSibling;
+                const isActive = this.classList.contains('active');
+
+                // 關閉所有其他已展開的FAQ
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.classList.remove('active');
+                });
+
+                // 如果當前項目不是已展開狀態，則展開它
+                if (!isActive) {
+                    this.classList.add('active');
+                    answer.classList.add('active');
+                }
+            });
+        });
+
+        // 高亮當前章節
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.6
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    document.querySelectorAll('.table-of-contents a').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.help-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // 打開第一個FAQ
+        document.querySelector('.faq-question').click();
+    </script>
+</body>
+
+</html>

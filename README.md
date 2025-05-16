@@ -28,67 +28,82 @@ Just provide the form URL and basic information to generate a pre-filled URL.
   - Short Answer / Long Answer
   - Multiple Choice / Dropdown
   - Checkbox / Linear Scale
-  - Single Choice / Checkbox
+  - Single Choice Grid / Checkbox Grid
   - Date / Time
 
 ## 🚀 Quick Start
 
-### Prerequisites
+This tool can be used in two ways: as a pure frontend application or with a Python backend.
 
-```bash
-pip install -r requirements.txt
-```
+### Option A: Pure Frontend Version (No Installation Required)
 
-### Basic Setup
+#### Prerequisites
+- A modern web browser (Chrome, Firefox, Edge, etc.)
+- A valid [Google AI Studio](https://makersuite.google.com/app/apikey) API key
 
-1. Apply for [Google AI Studio](https://makersuite.google.com/app/apikey) API key
+#### Running the Application
+Simply download this repository and open the `index.html` file in your web browser. No server is required.
 
-2. Create `.env` file:
-```bash
-GEMINI_API_KEY=your API key
-```
+You can also use:
+- Visual Studio Code's "Live Server" extension
+- Any static file server (such as Python's `python -m http.server`)
 
-3. Modify settings:
-```python
-# Modify form URL
-URL = 'your Google Form URL'
+### Option B: Python Version
 
-# Modify personal information
-PROMPT_PARTS = [
-    "Name: Your Name",
-    "Gender: Male/Female",
-    "Phone: Your Phone",
-    # ... other information
-]
-```
+#### Prerequisites
+- Python 3.7 or above
+- A valid [Google AI Studio](https://makersuite.google.com/app/apikey) API key
 
-### Run the program
+#### Setup
+1. Install the required packages:
+   ```bash
+   cd python
+   pip install -r requirements.txt
+   ```
 
-```bash
-python ai_form.py
-```
+2. Configure the Python script:
+   - Open `python/ai_form.py` in a text editor
+   - Set your Google Form URL and personal information in the script
+   - Create a `.env` file in the python directory with your API key:
+     ```
+     GEMINI_API_KEY=your_api_key_here
+     ```
+
+3. Run the script:
+   ```bash
+   python ai_form.py
+   ```
 
 ## 📖 Usage
 
-### Custom Prompt
-You can customize AI's response by modifying `PROMPT_PARTS`:
-- Personal information
-- Response rules and format
-- Answer selection restrictions
+### Frontend Version
 
-### Program Architecture
-| Function Name | Description |
-|---------|------|
-| `string_to_object_list()` | Parse Google Form structure |
-| `objects_to_result_strings()` | Generate pre-filled URL |
-| `objects_to_string()` | Convert form to AI-understandable format |
-| `set_answer()` | Set answer |
-| `get_form()` | Get form data |
+1. Enter your Gemini API key
+2. Paste a Google Form URL
+3. Wait for the form structure to be detected
+4. Enter your personal information
+5. Click "Generate Link" to get your pre-filled form URL
+
+### Python Version
+
+You can customize the script by modifying:
+- The `URL` variable with your Google Form URL
+- The `PROMPT_PARTS` list with your personal information
+
+### Custom Information Format
+You can format your personal information however you like. Example:
+```
+Name: John Doe
+Gender: Male
+Email: example@email.com
+Birthdate: {"year": 1990, "month": 5, "day": 15}
+Interests: Music, Hiking, Reading
+```
 
 ## ⚠️ Notes
 
-- Ensure you have a valid Gemini API key
-- Do not upload the `.env` file containing API keys to public repositories
+- Your Gemini API key is only used locally and is never stored or transmitted to any server
+- The web version requires successful form structure detection before generating links
 - This tool is for educational and research purposes only
 - Please comply with Google Form's terms of service
 
@@ -105,8 +120,8 @@ We welcome contributions to improve this tool:
 ### Improvement Directions
 - Support more question types
 - Improve AI accuracy
-- Optimize code structure
-- Add error handling mechanism
+- Add better error handling for form detection
+- Enhance user interface and experience
 
 ## 📄 License
 
@@ -126,8 +141,8 @@ For any questions or suggestions:
 ## 🙏 Acknowledgements
 
 - [Google Gemini AI](https://deepmind.google/technologies/gemini/)
-- [python-dotenv](https://github.com/theskumar/python-dotenv)
-- [requests](https://requests.readthedocs.io/)
+- Various CORS proxies for helping with form detection
+- Modern web technologies (HTML, CSS, JavaScript)
 
 ---
 

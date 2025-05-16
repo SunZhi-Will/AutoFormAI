@@ -1,0 +1,17 @@
+{
+    "name": "autoformai-web",
+    "version": "1.0.0",
+    "description": "AI 驅動的表單自動填寫工具 - 純前端版",
+    "main": "index.html",
+    "scripts": {
+        "start": "echo '請直接在瀏覽器打開 index.html 或使用 Live Server'"
+    },
+    "keywords": [
+        "ai",
+        "form",
+        "google-form",
+        "gemini"
+    ],
+    "author": "Sun",
+    "license": "MIT"
+}

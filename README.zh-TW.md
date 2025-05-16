@@ -33,62 +33,77 @@
 
 ## 🚀 快速開始
 
-### 前置需求
+本工具可以通過兩種方式使用：純前端應用或搭配 Python 後端。
 
-```bash
-pip install -r requirements.txt
-```
+### 方式 A：純前端版本（無需安裝）
 
-### 基本設定
+#### 前置需求
+- 現代網頁瀏覽器（Chrome、Firefox、Edge 等）
+- 有效的 [Google AI Studio](https://makersuite.google.com/app/apikey) API金鑰
 
-1. 申請 [Google AI Studio](https://makersuite.google.com/app/apikey) API 金鑰
+#### 執行應用程式
+只需下載此儲存庫並在瀏覽器中開啟 `index.html` 檔案即可。無需任何伺服器。
 
-2. 建立 `.env` 檔案：
-```bash
-GEMINI_API_KEY=你的API金鑰
-```
+您也可以使用：
+- Visual Studio Code 的 "Live Server" 擴充功能
+- 任何靜態檔案伺服器（如 Python 的 `python -m http.server`）
 
-3. 修改設定：
-```python
-# 修改表單網址
-URL = '你的Google Form網址'
+### 方式 B：Python 版本
 
-# 修改個人資訊
-PROMPT_PARTS = [
-    "名字: Your Name",
-    "性別: 男/女",
-    "電話: 你的電話",
-    # ... 其他資訊
-]
-```
+#### 前置需求
+- Python 3.7 或更高版本
+- 有效的 [Google AI Studio](https://makersuite.google.com/app/apikey) API金鑰
 
-### 執行程式
+#### 設置
+1. 安裝所需套件：
+   ```bash
+   cd python
+   pip install -r requirements.txt
+   ```
 
-```bash
-python ai_form.py
-```
+2. 配置 Python 腳本：
+   - 用文字編輯器開啟 `python/ai_form.py`
+   - 在腳本中設置您的 Google Form URL 和個人資訊
+   - 在 python 目錄中創建 `.env` 檔案，並添加您的 API 金鑰：
+     ```
+     GEMINI_API_KEY=您的API金鑰
+     ```
+
+3. 執行腳本：
+   ```bash
+   python ai_form.py
+   ```
 
 ## 📖 使用說明
 
-### 自訂提示詞
-你可以透過修改 `PROMPT_PARTS` 來自訂 AI 的回答方式：
-- 個人基本資料
-- 回答規則和格式
-- 答案選擇限制
+### 前端版本
 
-### 程式架構
-| 函數名稱 | 說明 |
-|---------|------|
-| `string_to_object_list()` | 解析 Google Form 結構 |
-| `objects_to_result_strings()` | 生成填寫用的 URL |
-| `objects_to_string()` | 將表單轉換為 AI 可理解的格式 |
-| `set_answer()` | 設定答案 |
-| `get_form()` | 獲取表單資料 |
+1. 輸入您的 Gemini API 金鑰
+2. 貼上 Google Form 網址
+3. 等待表單結構被檢測
+4. 輸入您的個人資訊
+5. 點擊"生成填寫連結"獲取預填表單的網址
+
+### Python 版本
+
+您可以通過修改以下內容來自訂腳本：
+- `URL` 變數，設置您的 Google Form 網址
+- `PROMPT_PARTS` 列表，設置您的個人資訊
+
+### 自訂資訊格式
+您可以按照自己喜歡的方式格式化個人資訊。例如：
+```
+名字: 王小明
+性別: 男
+電子郵件: example@email.com
+出生日期: {"year": 1990, "month": 5, "day": 15}
+興趣愛好: 音樂, 健行, 閱讀
+```
 
 ## ⚠️ 注意事項
 
-- 請確保你有合法的 Gemini API 金鑰
-- 不要將含有 API 金鑰的 `.env` 檔案上傳至公開儲存庫
+- 您的 Gemini API 金鑰僅在本地使用，從不會被儲存或傳輸到任何伺服器
+- 網頁版本需要成功檢測表單結構後才能生成連結
 - 本工具僅供學習研究使用
 - 請遵守 Google Form 的使用條款
 
@@ -105,8 +120,8 @@ python ai_form.py
 ### 改善方向
 - 支援更多題型
 - 改善 AI 回答準確度
-- 優化程式碼結構
-- 新增錯誤處理機制
+- 加強表單檢測的錯誤處理
+- 提升使用者介面和體驗
 
 ## 📄 授權條款
 
@@ -126,8 +141,8 @@ python ai_form.py
 ## 🙏 致謝
 
 - [Google Gemini AI](https://deepmind.google/technologies/gemini/)
-- [python-dotenv](https://github.com/theskumar/python-dotenv)
-- [requests](https://requests.readthedocs.io/)
+- 各種協助表單檢測的 CORS 代理服務
+- 現代網頁技術 (HTML, CSS, JavaScript)
 
 ---
 
