@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('updateFormDisplay', function () {
         if (window.detectedFormData && formDataDisplay) {
             formDataDisplay.textContent = objectsToString(window.detectedFormData);
-            // 如果表單結構容器是隱藏的，則顯示它
+            // 確保表單結構容器是顯示的
             if (formDataContainer.classList.contains('hidden')) {
                 formDataContainer.classList.remove('hidden');
             }
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
             successMessage.textContent = i18n.getText('detectSuccess');
             formUrlInput.parentNode.appendChild(successMessage);
 
-            // 顯示表單結構
+            // 顯示表單結構（在檢測完成時就顯示）
             formDataDisplay.textContent = objectsToString(detectedFormData);
             formDataContainer.classList.remove('hidden');
 
@@ -166,14 +166,15 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // 顯示載入動畫
-        loadingIndicator.classList.remove('hidden');
+        // 顯示載入動畫 - 直接設置樣式而不使用 hidden 類別
+        loadingIndicator.style.display = 'flex';
+        loadingIndicator.style.visibility = 'visible';
+        loadingIndicator.style.opacity = '1';
         resultContainer.classList.add('hidden');
 
-        // 如果表單結構已經顯示，不要隱藏它
-        if (!formDataContainer.classList.contains('hidden')) {
-            formDataContainer.classList.remove('hidden');
-        }
+        // 表單結構已在檢測完成時顯示，這裡不需要再次顯示
+        // formDataDisplay.textContent = objectsToString(detectedFormData);
+        // formDataContainer.classList.remove('hidden');
 
         // 獲取 API 金鑰和用戶輸入
         const apiKey = apiKeyInput.value;
@@ -206,8 +207,15 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('錯誤:', error);
             alert(`${i18n.getText('error')}${error.message}`);
         } finally {
-            // 隱藏載入動畫
-            loadingIndicator.classList.add('hidden');
+            // 隱藏載入動畫 - 直接設置樣式而不使用 hidden 類別
+            loadingIndicator.style.display = 'none';
+            loadingIndicator.style.visibility = 'hidden';
+            loadingIndicator.style.opacity = '0';
+
+            // 表單結構已在檢測完成時顯示，這裡不需要再次確保它顯示
+            // if (detectedFormData) {
+            //     formDataContainer.classList.remove('hidden');
+            // }
         }
     });
 

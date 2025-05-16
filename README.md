@@ -4,6 +4,8 @@
 
 [English](README.md) | [繁體中文](README.zh-TW.md)
 
+<img src="Logo.png" alt="AutoFormAI Logo" width="150" />
+
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 [![Python](https://img.shields.io/badge/Python-3.7%2B-blue)](https://www.python.org/)
 [![Gemini](https://img.shields.io/badge/AI-Gemini-orange)](https://deepmind.google/technologies/gemini/)
@@ -32,6 +34,10 @@ Just provide the form URL and basic information to generate a pre-filled URL.
   - Checkbox / Linear Scale
   - Single Choice Grid / Checkbox Grid
   - Date / Time
+- 🌐 Fully functional web interface with responsive design
+- 🌙 Support for both English and Traditional Chinese languages
+- 📱 Optimized for desktop and mobile devices
+- 📋 Detailed help page with step-by-step instructions
 
 ## 🚀 Quick Start
 

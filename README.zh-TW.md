@@ -4,6 +4,8 @@
 
 [English](README.md) | [繁體中文](README.zh-TW.md)
 
+<img src="Logo.png" alt="AutoFormAI Logo" width="150" />
+
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 [![Python](https://img.shields.io/badge/Python-3.7%2B-blue)](https://www.python.org/)
 [![Gemini](https://img.shields.io/badge/AI-Gemini-orange)](https://deepmind.google/technologies/gemini/)
@@ -32,6 +34,10 @@
   - 核取方塊 / 線性刻度
   - 單選方格 / 核取方格
   - 日期題 / 時間題
+- 🌐 功能完整的網頁介面與響應式設計
+- 🌙 支援英文和繁體中文雙語切換
+- 📱 針對桌面和行動裝置優化
+- 📋 提供詳細的使用說明與步驟指引
 
 ## 🚀 快速開始
 
