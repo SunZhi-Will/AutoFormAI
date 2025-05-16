@@ -16,6 +16,8 @@
 [使用說明](#使用說明) •
 [貢獻指南](#貢獻指南)
 
+<img src="preview.png" alt="AutoFormAI 截圖" width="800" />
+
 </div>
 
 ---

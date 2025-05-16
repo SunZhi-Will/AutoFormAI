@@ -16,6 +16,8 @@ Just provide the form URL and basic information to generate a pre-filled URL.
 [Usage](#usage) •
 [Contributing](#contributing)
 
+<img src="preview.png" alt="AutoFormAI Screenshot" width="800" />
+
 </div>
 
 ---
