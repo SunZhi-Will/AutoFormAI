@@ -10,6 +10,29 @@
     --shadow-subtle: 0 2px 10px rgba(0, 0, 0, 0.04);
     --shadow-medium: 0 5px 15px rgba(0, 0, 0, 0.07);
     --transition-standard: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --primary-color: #4a6bdf;
+    --primary-hover: #6c7ae0;
+    --secondary-color: #454545;
+    --background-color: #f7f9fc;
+    --card-background: #ffffff;
+    --text-color: #333333;
+    --error-color: #e74c3c;
+    --success-color: #27ae60;
+    --border-radius: 8px;
+    --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: #6c7ae0;
+        --primary-hover: #8a95e5;
+        --secondary-color: #a0a0a0;
+        --background-color: #1a1a1a;
+        --card-background: #2d2d2d;
+        --text-color: #f0f0f0;
+        --border-color: #444444;
+        --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
 }
 
 /* 基本元素 */
@@ -828,4 +851,257 @@ footer a:hover {
 .favicon-circle img {
     width: 24px;
     height: 24px;
+}
+
+/* 為隱私權政策頁面添加樣式 */
+.privacy-container {
+    padding: 20px 0;
+}
+
+.privacy-content {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: var(--shadow-subtle);
+}
+
+.privacy-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+}
+
+.last-updated {
+    color: var(--text-color);
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+}
+
+.privacy-section {
+    margin-bottom: 30px;
+}
+
+.privacy-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.privacy-section p,
+.privacy-section ul {
+    margin-bottom: 15px;
+}
+
+.privacy-section ul {
+    padding-left: 20px;
+}
+
+.privacy-section li {
+    margin-bottom: 8px;
+}
+
+/* 為關於我們頁面添加樣式 */
+.about-container {
+    padding: 20px 0;
+}
+
+.about-content {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: var(--shadow-subtle);
+}
+
+.about-section {
+    margin-bottom: 40px;
+}
+
+.about-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.6rem;
+}
+
+.about-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.about-image-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.about-image {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: var(--shadow-subtle);
+}
+
+.mission-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.mission-item {
+    flex: 1 1 300px;
+    padding: 20px;
+    background-color: var(--background-color);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.mission-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.tech-list,
+.vision-list {
+    list-style-type: none;
+    padding-left: 10px;
+}
+
+.tech-list li,
+.vision-list li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 15px;
+}
+
+.tech-list li:before,
+.vision-list li:before {
+    content: "\f00c";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+}
+
+.contact-info {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: var(--background-color);
+    border-radius: 8px;
+}
+
+.contact-info p {
+    margin-bottom: 10px;
+}
+
+.contact-info i {
+    color: var(--primary-color);
+    margin-right: 10px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    background-color: var(--background-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.social-link:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+
+    .privacy-content,
+    .about-content {
+        padding: 25px;
+    }
+
+    .mission-container {
+        flex-direction: column;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+}
+
+/* 隱私權政策頁面樣式 */
+.privacy-section h2,
+.privacy-section h3 {
+    color: var(--black);
+}
+
+.privacy-section p,
+.privacy-section li {
+    color: var(--medium-gray);
+}
+
+.last-updated {
+    color: var(--medium-gray);
+}
+
+/* 關於我們頁面樣式 */
+.about-section h2,
+.about-section h3 {
+    color: var(--black);
+}
+
+.about-section p,
+.about-section li,
+.contact-info p {
+    color: var(--medium-gray);
+}
+
+.mission-icon {
+    color: var(--black);
+}
+
+.tech-list li:before,
+.vision-list li:before {
+    color: var(--black);
+}
+
+.contact-info i {
+    color: var(--black);
+}
+
+.social-link {
+    background-color: var(--off-white);
+    color: var(--black);
+}
+
+.social-link:hover {
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.mission-item {
+    background-color: var(--off-white);
+}
+
+.contact-info {
+    background-color: var(--off-white);
 }

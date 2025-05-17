@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="FYUE2hN1RFttS8Mydqsc4VOwKhxQcG5xt-lWo0x9kos" />
+    <title data-i18n="aboutTitle">關於 AutoFormAI - 謝上智開發</title>
+    <link rel="icon" href="logo.ico" type="image/x-icon" media="(prefers-color-scheme: light)">
+    <link rel="icon" href="favicon-circle.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="static/css/style.css">
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8612427649292710"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img src="Logo.png" alt="AutoFormAI Logo" width="40" height="40"
+                    style="margin-right: 10px; vertical-align: middle;" />
+                <h1>AutoFormAI</h1>
+                <p data-i18n="aboutTagline">關於此專案</p>
+            </div>
+            <nav>
+                <a href="index.html"><i class="fas fa-arrow-left"></i> <span data-i18n="returnHome">返回首頁</span></a>
+                <a href="#" id="langToggle" class="lang-toggle" title="Switch language">EN</a>
+            </nav>
+        </header>
+
+        <!-- 頂部廣告 - 小型橫幅 -->
+        <div class="ad-container ad-container-header">
+            <ins class="adsbygoogle" style="display:inline-block; width:728px; height:90px"
+                data-ad-client="ca-pub-8612427649292710" data-ad-slot="6258491357"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <main>
+            <div class="form-container">
+                <section class="about-section">
+                    <h2 data-i18n="projectBackground">專案背景</h2>
+                    <div class="about-image-container">
+                        <img src="static/images/team.jpg" alt="AutoFormAI 示例" class="about-image"
+                            onerror="this.style.display='none'">
+                    </div>
+                    <p data-i18n="projectOrigin">AutoFormAI 誕生於 2025
+                        年，源於一個簡單的想法：讓表單填寫變得智能化和高效化。在一個資訊爆炸的時代，每個人每天都面臨著填寫各種表單的需求 —
+                        從工作調查到政府申請，從預約登記到會員註冊。</p>
+                    <p data-i18n="developerInsight">作為一名熱衷於人工智能和用戶體驗的開發者，我觀察到大多數人在填寫重複性表單時浪費了大量時間，且容易出錯。這促使我思考：「如果能利用 AI
+                        技術自動化這個過程，會為用戶節省多少時間？」</p>
+                    <p data-i18n="projectLaunch">在經過數月的研發和測試後，AutoFormAI 正式推出，旨在利用 Google Gemini 等最先進的 AI
+                        技術，自動化表單填寫過程，為用戶節省寶貴時間。</p>
+                </section>
+
+                <!-- 區塊間廣告 - 小型橫幅 -->
+                <div class="ad-container ad-container-content">
+                    <ins class="adsbygoogle" style="display:inline-block; width:468px; height:60px"
+                        data-ad-client="ca-pub-8612427649292710" data-ad-slot="3592854324"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+
+                <section class="about-section">
+                    <h2 data-i18n="designPrinciples">設計理念</h2>
+                    <div class="mission-container">
+                        <div class="mission-item">
+                            <i class="fas fa-clock mission-icon"></i>
+                            <h3 data-i18n="savingTime">節省時間</h3>
+                            <p data-i18n="savingTimeDesc">致力於通過自動化重複性任務，為用戶每週節省數小時的時間。</p>
+                        </div>
+                        <div class="mission-item">
+                            <i class="fas fa-shield-alt mission-icon"></i>
+                            <h3 data-i18n="privacyProtection">保護隱私</h3>
+                            <p data-i18n="privacyProtectionDesc">設計系統時以隱私為中心，確保用戶數據安全且不會被濫用。</p>
+                        </div>
+                        <div class="mission-item">
+                            <i class="fas fa-universal-access mission-icon"></i>
+                            <h3 data-i18n="accessibleTech">普及科技</h3>
+                            <p data-i18n="accessibleTechDesc">希望讓 AI 技術成為人人可用的工具，降低技術門檻。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="about-section">
+                    <h2 data-i18n="techArchitecture">技術架構</h2>
+                    <p data-i18n="techIntro">AutoFormAI 基於多項創新技術建立：</p>
+                    <ul class="tech-list">
+                        <li data-i18n="techGemini"><strong>Google Gemini AI</strong>：利用最先進的自然語言處理模型理解表單內容和用戶輸入。</li>
+                        <li data-i18n="techFormEngine"><strong>表單分析引擎</strong>：能夠自動檢測和分析各種 Google Form 的結構。</li>
+                        <li data-i18n="techClientProcess"><strong>客戶端處理</strong>：所有數據處理在用戶的瀏覽器中進行，無需將敏感資訊傳輸至伺服器。</li>
+                        <li data-i18n="techAdaptiveLearning"><strong>自適應學習</strong>：系統會不斷優化，提高對各種表單類型的處理能力。</li>
+                    </ul>
+                </section>
+
+                <!-- 區塊間廣告 - 小型橫幅 -->
+                <div class="ad-container ad-container-content">
+                    <ins class="adsbygoogle" style="display:inline-block; width:468px; height:60px"
+                        data-ad-client="ca-pub-8612427649292710" data-ad-slot="5218427539"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+
+                <section class="about-section">
+                    <h2 data-i18n="futureProspects">未來展望</h2>
+                    <p data-i18n="futureIntro">展望未來，計劃擴展 AutoFormAI 的功能：</p>
+                    <ul class="vision-list">
+                        <li data-i18n="futureSupport">支持更多類型的表單平台，如 Microsoft Forms、TypeForm 等。</li>
+                        <li data-i18n="futureTemplate">開發表單模板庫，讓用戶可以重複使用已填寫的資訊。</li>
+                        <li data-i18n="futureBatch">提供批量處理功能，讓企業可以更高效地管理表單填寫任務。</li>
+                        <li data-i18n="futureAI">探索更多 AI 應用場景，如智能數據摘要和分析功能。</li>
+                    </ul>
+                </section>
+
+                <!-- 區塊間廣告 - 小型橫幅 -->
+                <div class="ad-container ad-container-section">
+                    <ins class="adsbygoogle" style="display:inline-block; width:468px; height:60px"
+                        data-ad-client="ca-pub-8612427649292710" data-ad-slot="8475261823"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+
+                <section class="about-section">
+                    <h2 data-i18n="contactInfo">聯繫方式</h2>
+                    <p data-i18n="contactIntro">非常重視用戶的反饋和建議。如果您有任何問題、建議或合作意向，請隨時與我聯繫：</p>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> <span
+                                data-i18n="contactEmail">電子郵件：sun055676@gmail.com</span></p>
+                    </div>
+                    <p data-i18n="socialMedia">關注社群平台，獲取最新動態：</p>
+                    <div class="social-links">
+                        <a href="https://github.com/SunZhi-Will" target="_blank" class="social-link"><i
+                                class="fab fa-github"></i></a>
+                        <a href="https://sites.google.com/view/shangzhistime" target="_blank" class="social-link"><i
+                                class="fas fa-globe"></i></a>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- 底部廣告 - 小型橫幅 -->
+        <div class="ad-container ad-container-footer">
+            <ins class="adsbygoogle" style="display:inline-block; width:728px; height:90px"
+                data-ad-client="ca-pub-8612427649292710" data-ad-slot="7858319421"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <footer>
+            <p><span data-i18n="copyright">謝上智 © 2025</span> | <a href="index.html"><span
+                        data-i18n="returnHome">返回首頁</span></a> | <a href="privacy.html"><span
+                        data-i18n="privacy">隱私權政策</span></a> | <a href="about.html"><span
+                        data-i18n="about">關於此專案</span></a> | <a href="#" id="report-issue"><span
+                        data-i18n="reportIssue">回報問題</span></a></p>
+        </footer>
+    </div>
+
+    <a href="#" class="back-to-top" title="回到頂部" data-i18n-attr="title" data-i18n="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="static/js/i18n.js"></script>
+    <script>
+        // 平滑滾動效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (this.getAttribute('href') === '#') return;
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 回到頂部按鈕顯示/隱藏
+        window.addEventListener('scroll', function () {
+            const backToTopButton = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        // 回到頂部按鈕功能
+        document.querySelector('.back-to-top').addEventListener('click', function (e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // 回報問題連結
+        document.getElementById('report-issue').addEventListener('click', function (e) {
+            e.preventDefault();
+            alert(window.i18n.getText('issueMsg'));
+        });
+    </script>
+</body>
+
+</html>
