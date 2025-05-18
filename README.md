@@ -108,6 +108,27 @@ Birthdate: {"year": 1990, "month": 5, "day": 15}
 Interests: Music, Hiking, Reading
 ```
 
+## Google AdSense Compliance Update
+
+To ensure compliance with Google AdSense policies, we've made the following improvements:
+
+1. **Dynamic Loading of Advertisements**: Modified code to ensure ads are only displayed alongside relevant content
+   - Added logic to load mid-content ads only after form structure is detected
+   - Added logic to load result ads only after results are generated
+   - Removed ads from empty/placeholder sections
+
+2. **Content-First Approach**: Restructured ad placement in all pages
+   - Moved ads to appear after substantial content sections
+   - Ensured ads are not placed in navigation-only or utility sections
+
+3. **Removed Alert/Warning Dialogs**: Eliminated features that might trigger warning popups
+   - Removed "Report Issue" functionality from about.html and privacy.html
+   - Eliminated all JavaScript code that could produce alert dialogs
+
+These changes ensure that our website fully complies with Google AdSense policies by preventing ads from appearing on pages with no publisher content, under-construction pages, or pages used solely for navigation or alert purposes.
+
+**After implementing these changes, you should submit a website review request to Google AdSense to lift any restrictions.**
+
 ## ⚠️ Notes
 
 - Your Gemini API key is only used locally and is never stored or transmitted to any server

@@ -76,14 +76,8 @@
                 </form>
             </div>
 
-            <!-- 表單區間廣告 - 小型橫幅 -->
-            <div class="ad-container ad-container-content">
-                <ins class="adsbygoogle" style="display:inline-block; width:468px; height:60px"
-                    data-ad-client="ca-pub-8612427649292710" data-ad-slot="3592854324"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
+            <!-- 表單區間廣告容器 - 僅在表單結構顯示後才加載 -->
+            <div id="midAdContainer" class="ad-container ad-container-content hidden"></div>
 
             <div class="form-data-container hidden" id="formDataContainer">
                 <h2 data-i18n="formStructureTitle">表單結構</h2>
@@ -106,14 +100,8 @@
                 <p data-i18n="loading">AI 正在分析表單並生成回答...</p>
             </div>
 
-            <!-- 結果區間廣告 - 小型橫幅 -->
-            <div class="ad-container ad-container-content">
-                <ins class="adsbygoogle" style="display:inline-block; width:468px; height:60px"
-                    data-ad-client="ca-pub-8612427649292710" data-ad-slot="5218427539"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
+            <!-- 結果區間廣告容器 - 僅在結果顯示後才加載 -->
+            <div id="resultAdContainer" class="ad-container ad-container-content hidden"></div>
         </main>
 
         <!-- 底部廣告 - 小型橫幅 -->

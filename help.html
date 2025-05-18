@@ -58,7 +58,7 @@
                     </li>
                 </ul>
 
-                <!-- 側邊欄廣告 - 小型矩形 -->
+                <!-- 側邊欄廣告將在目錄內容顯示後加載 -->
                 <div class="ad-container ad-container-sidebar">
                     <ins class="adsbygoogle" style="display:inline-block; width:200px; height:200px"
                         data-ad-client="ca-pub-8612427649292710" data-ad-slot="9782536195"></ins>
@@ -104,15 +104,15 @@
                         <span class="step-number">4</span>
                         <p data-i18n="step1_4">在 AutoFormAI 應用中填入您的 API 金鑰</p>
                     </div>
-                </div>
 
-                <!-- 區塊間廣告 - 小型橫幅 -->
-                <div class="ad-container ad-container-section">
-                    <ins class="adsbygoogle" style="display:inline-block; width:468px; height:60px"
-                        data-ad-client="ca-pub-8612427649292710" data-ad-slot="3592854324"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
+                    <!-- 區塊間廣告 - 小型橫幅 (在內容之後) -->
+                    <div class="ad-container ad-container-section">
+                        <ins class="adsbygoogle" style="display:inline-block; width:468px; height:60px"
+                            data-ad-client="ca-pub-8612427649292710" data-ad-slot="3592854324"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
                 </div>
 
                 <div id="step2" class="help-section">
@@ -148,15 +148,15 @@
                         <p><i class="fas fa-lightbulb"></i> <strong data-i18n="tipTitle">提示：</strong><span
                                 data-i18n="step3_tip">結構化格式（例如 JSON）通常能提高 AI 理解準確性</span></p>
                     </div>
-                </div>
 
-                <!-- 區塊間廣告 - 小型橫幅 -->
-                <div class="ad-container ad-container-section">
-                    <ins class="adsbygoogle" style="display:inline-block; width:468px; height:60px"
-                        data-ad-client="ca-pub-8612427649292710" data-ad-slot="5218427539"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
+                    <!-- 區塊間廣告 - 小型橫幅 (在內容之後) -->
+                    <div class="ad-container ad-container-section">
+                        <ins class="adsbygoogle" style="display:inline-block; width:468px; height:60px"
+                            data-ad-client="ca-pub-8612427649292710" data-ad-slot="5218427539"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
                 </div>
 
                 <div id="step4" class="help-section">
@@ -201,50 +201,52 @@
                     <div class="faq-item">
                         <div class="faq-question">
                             <div class="icon-wrapper">
-                                <i class="fas fa-exclamation-triangle"></i> <span data-i18n="faq2_q">為什麼表單檢測會失敗？</span>
+                                <i class="fas fa-credit-card"></i> <span data-i18n="faq2_q">使用 AutoFormAI 需要付費嗎？</span>
                             </div>
                             <i class="fas fa-chevron-down toggle"></i>
                         </div>
                         <div class="faq-answer">
-                            <p data-i18n="faq2_a">由於瀏覽器的跨域安全限制，直接從 JavaScript 訪問 Google Form
-                                內容可能會被阻止。系統會嘗試使用多種代理方法，但並非所有表單都能成功檢測。</p>
+                            <p data-i18n="faq2_a">本工具完全免費使用。唯一可能的費用來自 Google Gemini API
+                                的使用（如果您超過了免費額度）。大多數用戶都不會超過 Google 提供的免費額度。</p>
                         </div>
                     </div>
 
                     <div class="faq-item">
                         <div class="faq-question">
                             <div class="icon-wrapper">
-                                <i class="fas fa-chart-line"></i> <span data-i18n="faq3_q">API 金鑰有使用限制嗎？</span>
+                                <i class="fas fa-file-alt"></i> <span data-i18n="faq3_q">支持哪些類型的表單？</span>
                             </div>
                             <i class="fas fa-chevron-down toggle"></i>
                         </div>
                         <div class="faq-answer">
-                            <p data-i18n="faq3_a">是的，Google Gemini API 有使用配額限制。如果您頻繁使用，可能會達到每日限制。請參考 <a
-                                    href="https://ai.google.dev/docs/quotas_limits" target="_blank">Google AI
-                                    文檔</a>瞭解更多。</p>
+                            <p data-i18n="faq3_a">目前僅支持 Google Form。我們正在努力未來支持更多平台，如 Microsoft Forms、TypeForm 等。</p>
                         </div>
                     </div>
 
                     <div class="faq-item">
                         <div class="faq-question">
                             <div class="icon-wrapper">
-                                <i class="fas fa-desktop"></i> <span data-i18n="faq4_q">我需要安裝什麼才能使用此工具？</span>
+                                <i class="fas fa-dice"></i> <span data-i18n="faq4_q">回答會永遠正確嗎？</span>
                             </div>
                             <i class="fas fa-chevron-down toggle"></i>
                         </div>
                         <div class="faq-answer">
-                            <p data-i18n="faq4_a">此工具是純前端應用程式，只需要一個現代網頁瀏覽器即可使用。無需安裝 Python 或 Node.js。</p>
+                            <p data-i18n="faq4_a">雖然 AI
+                                會盡力提供合適的答案，但準確性可能因表單類型和您提供的資訊而異。始終建議在提交前檢查自動填寫的答案，特別是對於重要的表單。</p>
                         </div>
                     </div>
-                </div>
 
-                <!-- 內容底部廣告 - 小型橫幅 -->
-                <div class="ad-container ad-container-section">
-                    <ins class="adsbygoogle" style="display:inline-block; width:468px; height:60px"
-                        data-ad-client="ca-pub-8612427649292710" data-ad-slot="8475261823"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <div class="icon-wrapper">
+                                <i class="fas fa-database"></i> <span data-i18n="faq5_q">我可以保存表單設置嗎？</span>
+                            </div>
+                            <i class="fas fa-chevron-down toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p data-i18n="faq5_a">目前不支持保存設置，每次使用都需要重新輸入資訊。我們計劃在未來版本中增加設置保存功能。</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -262,8 +264,7 @@
             <p><span data-i18n="copyright">謝上智 © 2025</span> | <a href="index.html"><span
                         data-i18n="returnHome">返回首頁</span></a> | <a href="privacy.html"><span
                         data-i18n="privacy">隱私權政策</span></a> | <a href="about.html"><span
-                        data-i18n="about">關於此專案</span></a> | <a href="#" id="report-issue"><span
-                        data-i18n="reportIssue">回報問題</span></a></p>
+                        data-i18n="about">關於此專案</span></a></p>
         </footer>
     </div>
 
@@ -304,60 +305,31 @@
             });
         });
 
-        // 回報問題連結
-        document.getElementById('report-issue').addEventListener('click', function (e) {
-            e.preventDefault();
-            alert(window.i18n.getText('issueMsg'));
-        });
+        // 初始化常見問題的互動功能
+        document.addEventListener('DOMContentLoaded', function () {
+            const faqQuestions = document.querySelectorAll('.faq-question');
 
-        // FAQ 收合效果
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', function () {
-                const answer = this.nextElementSibling;
-                const isActive = this.classList.contains('active');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function () {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('.toggle');
 
-                // 關閉所有其他已展開的FAQ
-                document.querySelectorAll('.faq-question').forEach(q => {
-                    q.classList.remove('active');
-                    q.nextElementSibling.classList.remove('active');
+                    // 開關回答
+                    if (answer.style.maxHeight) {
+                        answer.style.maxHeight = null;
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    } else {
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    }
                 });
-
-                // 如果當前項目不是已展開狀態，則展開它
-                if (!isActive) {
-                    this.classList.add('active');
-                    answer.classList.add('active');
-                }
             });
         });
-
-        // 高亮當前章節
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.6
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.getAttribute('id');
-                    document.querySelectorAll('.table-of-contents a').forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${id}`) {
-                            link.classList.add('active');
-                        }
-                    });
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.help-section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // 打開第一個FAQ
-        document.querySelector('.faq-question').click();
     </script>
 </body>
+
+</html>
 
 </html>

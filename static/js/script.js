@@ -37,6 +37,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const loadingIndicator = document.getElementById('loadingIndicator');
     const copyLinkBtn = document.getElementById('copyLinkBtn');
     const generateBtn = document.getElementById('generateBtn');
+    const midAdContainer = document.getElementById('midAdContainer');
+    const resultAdContainer = document.getElementById('resultAdContainer');
 
     // 將檢測到的表單結構設為全局變數，以便在語言切換時使用
     window.detectedFormData = null;
@@ -51,6 +53,8 @@ document.addEventListener('DOMContentLoaded', function () {
             // 確保表單結構容器是顯示的
             if (formDataContainer.classList.contains('hidden')) {
                 formDataContainer.classList.remove('hidden');
+                // 在表單結構顯示後加載中間廣告
+                loadMidAd();
             }
         }
     });
@@ -75,6 +79,30 @@ document.addEventListener('DOMContentLoaded', function () {
             detectFormStructure();
         }
     });
+
+    // 動態加載中間廣告
+    function loadMidAd() {
+        if (midAdContainer.classList.contains('hidden') && !midAdContainer.querySelector('.adsbygoogle')) {
+            midAdContainer.classList.remove('hidden');
+            midAdContainer.innerHTML = `
+                <ins class="adsbygoogle" style="display:inline-block; width:468px; height:60px"
+                    data-ad-client="ca-pub-8612427649292710" data-ad-slot="3592854324"></ins>
+            `;
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        }
+    }
+
+    // 動態加載結果區間廣告
+    function loadResultAd() {
+        if (resultAdContainer.classList.contains('hidden') && !resultAdContainer.querySelector('.adsbygoogle')) {
+            resultAdContainer.classList.remove('hidden');
+            resultAdContainer.innerHTML = `
+                <ins class="adsbygoogle" style="display:inline-block; width:468px; height:60px"
+                    data-ad-client="ca-pub-8612427649292710" data-ad-slot="5218427539"></ins>
+            `;
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        }
+    }
 
     // 檢測表單結構函數
     async function detectFormStructure() {
@@ -121,6 +149,9 @@ document.addEventListener('DOMContentLoaded', function () {
             // 顯示表單結構（在檢測完成時就顯示）
             formDataDisplay.textContent = objectsToString(detectedFormData);
             formDataContainer.classList.remove('hidden');
+
+            // 在表單結構顯示後加載中間廣告
+            loadMidAd();
 
             // 啟用生成按鈕
             generateBtn.disabled = false;
@@ -172,6 +203,11 @@ document.addEventListener('DOMContentLoaded', function () {
         loadingIndicator.style.opacity = '1';
         resultContainer.classList.add('hidden');
 
+        // 隱藏結果區間廣告（如果之前已經顯示）
+        if (!resultAdContainer.classList.contains('hidden')) {
+            resultAdContainer.classList.add('hidden');
+        }
+
         // 表單結構已在檢測完成時顯示，這裡不需要再次顯示
         // formDataDisplay.textContent = objectsToString(detectedFormData);
         // formDataContainer.classList.remove('hidden');
@@ -198,61 +234,48 @@ document.addEventListener('DOMContentLoaded', function () {
             // 生成填寫連結
             const fillUrl = objectsToResultStrings(formUrl, formData);
 
-            // 顯示結果
+            // 設定並顯示填寫連結
             formFillLink.href = fillUrl;
             formFillLink.textContent = fillUrl;
             resultContainer.classList.remove('hidden');
 
-        } catch (error) {
-            console.error('錯誤:', error);
-            alert(`${i18n.getText('error')}${error.message}`);
-        } finally {
-            // 隱藏載入動畫 - 直接設置樣式而不使用 hidden 類別
+            // 在結果顯示後加載結果區間廣告
+            loadResultAd();
+
+            // 隱藏載入動畫
             loadingIndicator.style.display = 'none';
             loadingIndicator.style.visibility = 'hidden';
             loadingIndicator.style.opacity = '0';
 
-            // 表單結構已在檢測完成時顯示，這裡不需要再次確保它顯示
-            // if (detectedFormData) {
-            //     formDataContainer.classList.remove('hidden');
-            // }
+            // 自動滾動到結果區域
+            resultContainer.scrollIntoView({ behavior: 'smooth' });
+
+        } catch (error) {
+            console.error('處理失敗:', error);
+            alert(`處理失敗: ${error.message}`);
+
+            // 隱藏載入動畫
+            loadingIndicator.style.display = 'none';
+            loadingIndicator.style.visibility = 'hidden';
+            loadingIndicator.style.opacity = '0';
         }
     });
 
-    // 複製連結按鈕功能
+    // 監聽複製連結按鈕
     copyLinkBtn.addEventListener('click', function () {
         const linkText = formFillLink.href;
-
-        // 使用現代 Clipboard API
-        if (navigator.clipboard) {
-            navigator.clipboard.writeText(linkText)
-                .then(() => {
-                    // 臨時變更按鈕文字表示成功
-                    const originalText = copyLinkBtn.textContent;
-                    copyLinkBtn.textContent = i18n.getText('copied');
-                    setTimeout(() => {
-                        copyLinkBtn.textContent = originalText;
-                    }, 2000);
-                })
-                .catch(err => {
-                    console.error('複製失敗:', err);
-                    alert(i18n.getText('copyFail'));
-                });
-        } else {
-            // 備用方法 (較舊的瀏覽器)
-            const tempInput = document.createElement('input');
-            document.body.appendChild(tempInput);
-            tempInput.value = linkText;
-            tempInput.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempInput);
-
-            const originalText = copyLinkBtn.textContent;
-            copyLinkBtn.textContent = i18n.getText('copied');
-            setTimeout(() => {
-                copyLinkBtn.textContent = originalText;
-            }, 2000);
-        }
+        navigator.clipboard.writeText(linkText)
+            .then(() => {
+                const originalText = copyLinkBtn.textContent;
+                copyLinkBtn.textContent = i18n.getText('linkCopied');
+                setTimeout(() => {
+                    copyLinkBtn.textContent = originalText;
+                }, 2000);
+            })
+            .catch(err => {
+                console.error('無法複製連結: ', err);
+                alert('無法複製連結: ' + err);
+            });
     });
 
     /**
