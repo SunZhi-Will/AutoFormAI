@@ -128,6 +128,8 @@ const i18n = {
 
         // 樣本資料
         'sampleData': `名字: Sun\n性別: 男\n電話: 0912345678\n出生: {"year": 1999,"month": 8,"day": 19}\nEmail: xxxx@gmail.com\n地址: 高雄市\n喜好: 畫畫、遊戲`,
+        'faq5_q': '我可以保存表單設置嗎？',
+        'faq5_a': '目前不支持保存設置，每次使用都需要重新輸入資訊。我們計劃在未來版本中增加設置保存功能。',
 
         // 隱私權政策頁面
         'privacyTitle': '隱私權政策 - AutoFormAI',
@@ -269,6 +271,8 @@ const i18n = {
         'proxyFailed': 'Proxy {0} failed: {1}',
         'proxyException': 'Error occurred with proxy {0}: {1}',
 
+        'faq5_q': 'Can I save form settings?',
+        'faq5_a': 'Currently, saving settings is not supported. Each time you use the tool, you need to enter the information again. We plan to add a feature to save settings in future versions.',
         // API error messages
         'apiRequestFail': 'API request failed: {0}',
         'apiResponseInvalid': 'API response structure is abnormal',
