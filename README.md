@@ -26,18 +26,34 @@ Just provide the form URL and basic information to generate a pre-filled URL.
 
 ## ✨ Features
 
-- 🧠 Use Gemini AI to generate answers
-- 🔍 Automatically parse Google Form structure
-- 📝 Support multiple question types:
+- 🧠 **AI-Powered Responses** - Use Gemini AI to generate intelligent answers
+- 🔍 **Form Structure Detection** - Automatically parse Google Form structure
+- 📝 **Multiple Question Types** - Support for various question formats:
   - Short Answer / Long Answer
   - Multiple Choice / Dropdown
   - Checkbox / Linear Scale
   - Single Choice Grid / Checkbox Grid
   - Date / Time
-- 🌐 Fully functional web interface with responsive design
-- 🌙 Support for both English and Traditional Chinese languages
-- 📱 Optimized for desktop and mobile devices
-- 📋 Detailed help page with step-by-step instructions
+- 🌐 **Web Interface** - Fully functional web interface with responsive design
+- 🌙 **Multilingual Support** - Both English and Traditional Chinese languages
+- 📱 **Device Optimization** - Optimized for desktop and mobile devices
+- 📋 **Detailed Help** - Step-by-step instructions for users
+
+<details>
+<summary>📋 Detailed Feature List</summary>
+
+| Feature | Description | Status |
+|---------|-------------|--------|
+| AI Integration | Connect with Google Gemini AI API | ✅ |
+| Form Detection | Parse Google Form structure and elements | ✅ |
+| Question Support | Support for various Google Form question types | ✅ |
+| Web Interface | Responsive web design for all devices | ✅ |
+| Multilingual UI | Support for English and Traditional Chinese | ✅ |
+| Pre-filled URL | Generate pre-filled form URLs | ✅ |
+| Python Version | CLI version with Python script | ✅ |
+| Pure Frontend Version | No server required operation | ✅ |
+
+</details>
 
 ## 🚀 Quick Start
 
@@ -107,6 +123,37 @@ Email: example@email.com
 Birthdate: {"year": 1990, "month": 5, "day": 15}
 Interests: Music, Hiking, Reading
 ```
+
+## 🔧 Technical Details
+
+<details>
+<summary>🔍 Project Structure</summary>
+
+```
+AutoFormAI/
+├── index.html            # Main web interface
+├── help.html             # Help documentation page
+├── about.html            # About page
+├── privacy.html          # Privacy policy page
+├── 404.html              # Error page
+├── static/               # Static assets
+│   ├── css/              # Stylesheets
+│   │   └── style.css     # Main CSS styles
+│   └── js/               # JavaScript files
+│       ├── script.js     # Main application logic
+│       └── i18n.js       # Internationalization
+├── python/               # Python version
+│   ├── ai_form.py        # Main Python script
+│   └── requirements.txt  # Python dependencies
+├── Logo.png              # Project logo
+├── preview.png           # Screenshot for README
+├── favicon-circle.svg    # Favicon SVG
+├── robots.txt            # Robots file
+├── sitemap.xml           # Site map
+└── README.md             # Documentation
+```
+
+</details>
 
 ## Google AdSense Compliance Update
 

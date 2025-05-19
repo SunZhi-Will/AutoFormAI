@@ -26,18 +26,34 @@
 
 ## ✨ 功能特點
 
-- 🧠 使用 Gemini AI 智能生成答案
-- 🔍 自動解析 Google Form 結構
-- 📝 支援多種題型：
+- 🧠 **AI 智能回答** - 使用 Gemini AI 生成智能回答
+- 🔍 **表單結構檢測** - 自動解析 Google Form 結構
+- 📝 **多種題型支援** - 支援各種問題格式：
   - 簡答題 / 詳答題
   - 選擇題 / 下拉式選單
   - 核取方塊 / 線性刻度
   - 單選方格 / 核取方格
   - 日期題 / 時間題
-- 🌐 功能完整的網頁介面與響應式設計
-- 🌙 支援英文和繁體中文雙語切換
-- 📱 針對桌面和行動裝置優化
-- 📋 提供詳細的使用說明與步驟指引
+- 🌐 **網頁界面** - 功能完整的網頁介面與響應式設計
+- 🌙 **多語言支援** - 支援英文和繁體中文
+- 📱 **裝置最佳化** - 針對桌面和行動裝置優化
+- 📋 **詳細說明** - 為使用者提供逐步指引
+
+<details>
+<summary>📋 詳細功能清單</summary>
+
+| 功能 | 描述 | 狀態 |
+|-----|-----|-----|
+| AI 整合 | 連接 Google Gemini AI API | ✅ |
+| 表單檢測 | 解析 Google Form 結構和元素 | ✅ |
+| 問題支援 | 支援各種 Google Form 問題類型 | ✅ |
+| 網頁界面 | 適用於所有裝置的響應式網頁設計 | ✅ |
+| 多語言界面 | 支援英文和繁體中文 | ✅ |
+| 預填網址 | 生成預填表單的網址 | ✅ |
+| Python 版本 | 命令列界面的 Python 腳本 | ✅ |
+| 純前端版本 | 無需伺服器運行 | ✅ |
+
+</details>
 
 ## 🚀 快速開始
 
@@ -107,6 +123,37 @@
 出生日期: {"year": 1990, "month": 5, "day": 15}
 興趣愛好: 音樂, 健行, 閱讀
 ```
+
+## 🔧 技術細節
+
+<details>
+<summary>🔍 專案結構</summary>
+
+```
+AutoFormAI/
+├── index.html            # 主要網頁界面
+├── help.html             # 幫助文檔頁面
+├── about.html            # 關於頁面
+├── privacy.html          # 隱私政策頁面
+├── 404.html              # 錯誤頁面
+├── static/               # 靜態資源
+│   ├── css/              # 樣式表
+│   │   └── style.css     # 主要 CSS 樣式
+│   └── js/               # JavaScript 文件
+│       ├── script.js     # 主要應用邏輯
+│       └── i18n.js       # 國際化
+├── python/               # Python 版本
+│   ├── ai_form.py        # 主要 Python 腳本
+│   └── requirements.txt  # Python 依賴
+├── Logo.png              # 專案標誌
+├── preview.png           # README 的截圖
+├── favicon-circle.svg    # 網站圖標
+├── robots.txt            # 機器人檔案
+├── sitemap.xml           # 網站地圖
+└── README.md             # 文檔
+```
+
+</details>
 
 ## Google AdSense 合規性更新
 
